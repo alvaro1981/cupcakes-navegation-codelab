@@ -15,6 +15,7 @@
  */
 package com.example.cupcake
 
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -114,7 +115,17 @@ fun CupcakeApp(
                 val context = LocalContext.current
                 SelectOptionScreen(
                     subtotal = uiState.price,
-                    options = DataSource.flavors.map { id -> context.resources.getString(id) }
+                    options = DataSource.flavors.map { id -> context.resources.getString(id) },
+                    onSelectionChanged = {viewModel.setFlavor(it)},
+                    modifier = Modifier.fillMaxHeight()
+                )
+            }
+            composable(route = CupcakeScreen.Pickup.name){
+                SelectOptionScreen(
+                    subtotal = uiState.price,
+                    options = uiState.pickupOptions,
+                    onSelectionChanged = {viewModel.setDate(it)},
+                    modifier = Modifier.fillMaxHeight()
                 )
             }
         }

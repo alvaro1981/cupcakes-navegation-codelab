@@ -113,6 +113,7 @@ class OrderViewModel : ViewModel() {
             dateOptions.add(formatter.format(calendar.time))
             calendar.add(Calendar.DATE, 1)
         }
+
         return dateOptions
     }
 }
